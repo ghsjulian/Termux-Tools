@@ -34,8 +34,7 @@ python2 -m SimpleHTTPServer 8000
 }
 
 phpmyadmin(){
-echo "[+] Enter Port :" |lolcat
-read port
+read -p " [+] Enter Port :" port |lolcat
 clear
 echo "    < ━━━━━━━━━━━━ [★][★] ━━━━━━━━━━━━ > " |lolcat
 figlet -f small " MySQL"|lolcat
@@ -44,8 +43,7 @@ php -S localhost:"$port" /data/data/com.termux/files/usr/share/phpmyadmin
 }
 
 php-server(){
-echo "[+] Enter Port :" | lolcat
-read port
+read -p " [+] Enter Port :" port |lolcat
 clear
 echo "    < ━━━━━━━━━━━━ [★][★] ━━━━━━━━━━━━ > " |lolcat
 figlet -f small " Localhost"|lolcat
