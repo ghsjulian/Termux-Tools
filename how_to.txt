@@ -1,0 +1,42 @@
+###########################################
+EXACT LOCATION TRACING
+cd seeker
+python seeker.py
+select option and click
+open new terminal
+type cloudflared tunnel --url  http://127.0.0.1:8080
+you'll see a public url copy this and sent to the victims.
+awesome 😊
+###########################################
+JAVA COMPILING METHOD
+javac filename.java
+###########################################
+C/C++ COMPILING METHODS
+clang filename.c -o filename
+./filename
+###########################################
+
+PHP APACHE SERVER 
+
+Command =>> php -S 127.0.0.1:8080
+
+#########################################
+
+USE MYSQL ON TERMUX TERMINAL
+
+Command =>> mysql -u root
+
+########################################
+
+START PHPMYADMIN COMMANDS
+
+Command =>> php -S localhost:8080 -t $PREFIX/share/phpmyadmin
+
+########################################
+
+HOW TO RUN JAVA EASILY
+
+Command =>> 
+ >> ecj file_name.java dx --dex 
+ >> --output=file_name.dex file_name.class
+ >> dalvikvm -cp  file_name.dex  file_name
