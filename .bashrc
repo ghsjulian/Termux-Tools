@@ -76,7 +76,23 @@ cls
 ls
 }
 
-acode_terminal(){
+acode(){
     cd /data/data/com.termux/files/home/Termux-Tools
     python assets/termServer.py
 }
+remove_bg(){
+    cd /data/data/com.termux/files/home/Termux-Tools
+    python assets/remove_bg.py
+}
+
+eruda(){
+  cd
+  cd Termux-Tools/eruda/ && python2 -m SimpleHTTPServer 8010
+}
+
+myserver(){
+    cd /data/data/com.termux/files/home/Termux-Tools/assets
+    python server.py
+}
+
+export PATH=$PATH:/data/data/com.termux/files/usr/bin

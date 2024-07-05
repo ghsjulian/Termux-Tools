@@ -1,0 +1,8 @@
+ {
+    "acode" : "cd /data/data/com.termux/files/home/Termux-Tools/assets/ && python termServer.py",
+    "eruda" : "cd /data/data/com.termux/files/home/Termux-Tools/eruda/ && python2 -m SimpleHTTPServer 8010",
+    "mysql" : "mysqld",
+    "php-server" : "cd /sdcard/htdocs/api/ && php -S localhost:8080",
+    "phpmyadmin" : "cd /data/data/com.termux/files/home/social-network/app/ && php -S localhost:8002",
+    "react" : "cd /data/data/com.termux/files/home/social-network && npm run dev"
+}
