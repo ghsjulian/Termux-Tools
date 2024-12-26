@@ -77,8 +77,8 @@ ls
 }
 
 acode(){
-    cd /data/data/com.termux/files/home/Termux-Tools
-    python assets/termServer.py
+    #cd /data/data/com.termux/files/home/Termux-Tools
+    python termServer.py
 }
 remove_bg(){
     cd /data/data/com.termux/files/home/Termux-Tools
@@ -96,3 +96,86 @@ myserver(){
 }
 
 export PATH=$PATH:/data/data/com.termux/files/usr/bin
+
+
+
+
+
+
+
+
+
+
+# Add this function to your ~/.bashrc file
+
+javamon() {
+  local filename=$(basename "$1")
+  local classpath=$(echo "$1" | sed 's/\.java//')
+
+  while true; do
+    javac "$1" &> /dev/null
+
+    if [ $? -eq 0 ]; then
+      java "$classpath" &> /dev/null
+    fi
+
+    sleep 1
+  done
+}
+
+
+
+
+
+
+run_java() {
+    # Check if the filename is provided
+    if [ -z "$1" ]; then
+        echo ""
+        echo "[-] Usage --> run_java filename.java"
+        echo ""
+        return 1
+    fi
+    # Extract the filename without extension
+    filename=$(basename "$1" .java)
+    # Check if the file exists
+    if [ ! -f "$1" ]; then
+        echo ""
+        echo "${RED}________________________________________"
+        echo ""
+        echo "${WHITE}${BOLD}[!]${YELLOW}${BOLD} File Not Found --> ${CYAN}$1"
+        echo "${RED}________________________________________"
+        echo ""
+        return 1
+    fi
+    # Compile the Java file
+    javac "$1"
+    # Check if compilation was successful
+    if [ $? -eq 0 ]; then
+        echo ""
+        echo "${BLUE}________________________________________"
+        echo ""
+        echo "${YELLOW}${BOLD}[+]${RED} Created By --> ${GREEN}Ghs Julian"
+        echo ""
+        echo "${YELLOW}${BOLD}[+]${CYAN} Compilation Successfully !"
+        sleep 1
+        echo ""
+        echo "${WHITE}${BOLD}[+]${YELLOW} Running Program..."
+        # Run the compiled Java class
+        echo ${WHITE}
+        java "$filename"
+        echo "${BLUE}________________________________________"
+        echo "${YELLOW}----------------------------------------"
+        echo ""
+    else
+        echo ""
+        echo "${RED}________________________________________"
+        echo ""
+        echo "${WHITE}${BOLD}[!]${YELLOW}${BOLD} Compilation Failed !"
+        echo ""
+        echo "${RED}________________________________________"
+        echo ""
+    fi
+}
+
+
