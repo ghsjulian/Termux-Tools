@@ -222,3 +222,65 @@ javamoon() {
         inotifywait -e modify "$1"
     done
 }
+### For Running C And C++ 
+run_code() {
+    # Check if the filename is provided
+    if [ -z "$1" ]; then
+        echo ""
+        echo "[-] Usage --> run_code filename.c or filename.cpp"
+        echo ""
+        return 1
+    fi
+
+    # Extract the filename without extension
+    filename=$(basename "$1")
+    extension="${filename##*.}"
+    filename_no_ext="${filename%.*}"
+
+    # Check if the file exists
+    if [ ! -f "$1" ]; then
+        echo ""
+        echo "________________________________________"
+        echo ""
+        echo "[!] File Not Found --> $1"
+        echo "________________________________________"
+        echo ""
+        return 1
+    fi
+
+    # Compile the C or C++ file
+    if [ "$extension" == "c" ]; then
+        clang "$1" -o "$filename_no_ext"
+    elif [ "$extension" == "cpp" ]; then
+        clang++ "$1" -o "$filename_no_ext"
+    else
+        echo ""
+        echo "[-] Unsupported file type. Please provide a .c or .cpp file."
+        return 1
+    fi
+
+    # Check if compilation was successful
+    if [ $? -eq 0 ]; then
+        echo ""
+        echo "________________________________________"
+        echo ""
+        echo "[+] Compilation Successfully!"
+        sleep 1
+        echo ""
+        echo "[+] Running Program..."
+        # Run the compiled program
+        echo ""
+        ./"$filename_no_ext"
+        echo "________________________________________"
+        echo "----------------------------------------"
+        echo ""
+    else
+        echo ""
+        echo "________________________________________"
+        echo ""
+        echo "[!] Compilation Failed!"
+        echo ""
+        echo "________________________________________"
+        echo ""
+    fi
+}
