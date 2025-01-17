@@ -284,3 +284,59 @@ run_code() {
         echo ""
     fi
 }
+
+
+
+### For Running C#
+run_csharp() {
+    # Check if the filename is provided
+    if [ -z "$1" ]; then
+        echo ""
+        echo "[-] Usage --> run_csharp filename.cs"
+        echo ""
+        return 1
+    fi
+
+    # Extract the filename without extension
+    filename=$(basename "$1" .cs)
+
+    # Check if the file exists
+    if [ ! -f "$1" ]; then
+        echo ""
+        echo "________________________________________"
+        echo ""
+        echo "[!] File Not Found --> $1"
+        echo "________________________________________"
+        echo ""
+        return 1
+    fi
+
+    # Compile the C# file
+    mcs "$1"
+    
+    # Check if compilation was successful
+    if [ $? -eq 0 ]; then
+        echo ""
+        echo "________________________________________"
+        echo ""
+        echo "[+] Compilation Successfully!"
+        sleep 1
+        echo ""
+        echo "[+] Running Program..."
+        
+        # Run the compiled C# executable
+        mono "$filename.exe"
+        
+        echo "________________________________________"
+        echo "----------------------------------------"
+        echo ""
+    else
+        echo ""
+        echo "________________________________________"
+        echo ""
+        echo "[!] Compilation Failed!"
+        echo ""
+        echo "________________________________________"
+        echo ""
+    fi
+}
